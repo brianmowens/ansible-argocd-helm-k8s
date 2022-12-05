@@ -1,0 +1,13 @@
+
+- name: Download ArgoCD CLI from GitHub
+  become: yes
+  get_url:
+    url: https://github.com/argoproj/argo-cd/releases/download/{{ argocd_cli_version }}/argocd-linux-amd64
+    dest: /usr/local/bin/argocd
+    mode: 555
+
+- name: Mark ArgoCD CLI as executable
+  become: yes
+  file:
+    dest: /usr/local/bin/argocd
+    mode: u+x

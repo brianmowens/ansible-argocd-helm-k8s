@@ -1,0 +1,14 @@
+---
+# defaults file for helm-argocd-k8s
+
+# Whether or not to install the ArgoCD CLI on the target nodes
+install_argocd_cli: true
+
+# Version of ArgoCD CLI to install
+argocd_cli_version: v2.5.2
+
+# Password used to reset the admin accounts default password with
+argocd_admin_password: ChangeMe
+
+# Enable an ingress to the ArgoCD service
+enable_ingress: true

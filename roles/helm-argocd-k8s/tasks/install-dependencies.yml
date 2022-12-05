@@ -1,0 +1,24 @@
+# Ensures dependencies required by Ansible are present on the target host
+- name: Ensure pip3 is installed
+  become: yes
+  apt:
+    name: python3-pip
+    update_cache: yes
+    state: present
+
+- name: Install yaml package
+  pip:
+    name: PyYAML
+
+- name: Check if Helm is installed
+  command: helm version
+  register: helm_version_output
+  changed_when: false
+  failed_when:
+    - helm_version_output.rc > 0
+
+- name: Install Helm
+  snap:
+    name: helm3
+  when: "'version.BuildInfo' not in helm_version_output.stdout"
+  

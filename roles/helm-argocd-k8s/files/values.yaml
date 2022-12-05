@@ -1,0 +1,11 @@
+configs:
+  secret:
+    argocdServerAdminPassword: $2a$10$45qfyFnO1Rd8crzTPVuLruqCntQOs.Nv3yMLMAyZBo9vmNRbZY0dC
+server:
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+  extraArgs:
+  - --insecure
+installCRDs: false

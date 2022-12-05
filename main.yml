@@ -1,0 +1,4 @@
+---
+- hosts: kubernetes_target_nodes
+  roles:
+    - helm-argocd-k8s

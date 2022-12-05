@@ -1,0 +1,17 @@
+---
+# tasks file for helm-argocd-k8s
+
+# Install ansible dependencies
+- name: Install Ansible dependencies
+  include_tasks: install-dependencies.yml
+
+- name: Install and apply ArgoCD Helm chart
+  include_tasks: argocd-helm-chart.yml
+
+- name: Install ArgoCD CLI tool
+  include_tasks: install-argocd-cli.yml
+  when: install_argocd_cli
+
+- name: Configure ArgoCD Ingress
+  include_tasks: configure-ingress.yml
+  when: enable_ingress

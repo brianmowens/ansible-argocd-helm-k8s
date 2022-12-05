@@ -1,0 +1,20 @@
+- name: Add ArgoCD Helm repo
+  kubernetes.core.helm_repository:
+    name: argocd
+    repo_url: "https://argoproj.github.io/argo-helm"
+
+- name: Update Helm repository cache
+  kubernetes.core.helm:
+    name: cacheupdate # dummy value
+    namespace: kube-system # dummy value
+    state: absent # dummy value
+    update_repo_cache: true
+
+- name: Apply ArgoCD Helm chart
+  kubernetes.core.helm:
+    name: argo-cd
+    release_namespace: argocd
+    create_namespace: yes
+    chart_ref: argocd/argo-cd
+    values: "{{ lookup('file', 'values.yaml') | from_yaml }}"
+  
